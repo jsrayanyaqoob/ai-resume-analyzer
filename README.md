@@ -1,4 +1,4 @@
-# HireLens AI
+# AI Resume Analyzer
 
 AI-powered Resume Analyzer and Job Matching platform built using React, Tailwind CSS, Node.js, Express, and Gemini AI.
 
