@@ -71,7 +71,7 @@ ${resumeText}
       // gemini 2.5 flash lite
 
 
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: {
@@ -317,6 +317,21 @@ app.post("/job-match", async (req, res) => {
       summary: "Something went wrong",
     })
   }
+})
+
+
+let lastCallTime = 0
+
+app.post("/analyze", async (req, res) => {
+  const now = Date.now()
+
+  if (now - lastCallTime < 10000) {
+    return res.status(429).json({ error: "Too many requests" })
+  }
+
+  lastCallTime = now
+
+  // call Gemini here
 })
 
 app.listen(3000, () => {
